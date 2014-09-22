@@ -1,5 +1,6 @@
-<?php
-namespace CBF\Routing;
+<?php namespace CBF\Routing;
+
+use \Closure;
 
 class Route {
 	
@@ -84,6 +85,16 @@ class Route {
 	
 	public function getPathAsRegex(){
 		return preg_replace("/{(\w+)}/", "(.+)", $this->_path);
+	}
+	
+	
+	public function run(){
+		if($this->_target instanceof Closure){
+			return call_user_func_array($this->_target, $this->_params);
+		}
+		$controllerName = ucfirst($this->getController());
+		$controller = new $controllerName;
+		return $controller->callAction($this->getAction($this->params));
 	}
 
 }

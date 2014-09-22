@@ -1,7 +1,7 @@
 <?php
 
-use CBF\Autoloading\Autoloader;
-use CBF\Application\Application;
+use \CBF\Autoloading\Autoloader;
+
 
 
 require_once __DIR__.'/../CBF/Autoloading/Autoloader.php';
@@ -9,10 +9,13 @@ require_once __DIR__.'/../CBF/Autoloading/Autoloader.php';
 
 
 Autoloader::addPath('.');
+//Autoloader::addPath('./CBF/');
 Autoloader::register();
 
 
-$app = \CBF\Application\Application::getInstance();
+$app = new \CBF\Application\Application;
+
+\CBF\Facade\Facade::setContainer($app);
 
 $app->setConfigsPath(__DIR__ . '/configs/');
 $app->detectEnv(array(
@@ -21,6 +24,11 @@ $app->detectEnv(array(
 
 $app->loadConfig('path');
 $app->loadConfig('database');
-$app->loadConfig('cache');
 
 
+
+
+require_once $app->getConfig('path')->framework . 'bootstrap.php';
+
+
+require_once $app->getConfig('path')->app . 'routes.php';

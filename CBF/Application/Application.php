@@ -1,26 +1,16 @@
 <?php namespace CBF\Application;
 
-use CBF\Config\Config;
-use CBF\Singleton\Singleton;
+use \CBF\Config\Config;
+use \CBF\Container\Container;
 
 
-class Application extends Singleton{
+class Application extends Container{
 	
-	
-	
-	
-	
+
 	protected $_configs;
 	protected $_configsPath = '';
 	protected $_env = 'global';
 	
-	
-	
-	
-
-
-
-	public function __construct(){}
 	
 	public function setEnv($env){
 		$this->_env = $env;
@@ -42,10 +32,31 @@ class Application extends Singleton{
 	}
 	
 	
+	public function getConfig($name){
+		return $this->_configs[$name];
+	}
+	
+	
+	public function setConfig($name, \CBF\Config $config){
+		$this->_configs[$name] = $config;
+	}
+
+
+	
 	public function detectEnv($envs){
 		$hostName = gethostname();
 		if(array_key_exists($hostName, $envs)){
 			$this->_env = $envs[$hostName];
+		}
+	}
+	
+	
+	public function run($route){
+		try { 
+			$result = $route->run();
+			print $result;
+		} catch(Exception $e) {
+			print $e;
 		}
 	}
 	

@@ -5,10 +5,12 @@ class View {
 	protected $_templatesDir;
 	protected $_tplVars = array();
 	protected $_engine;
+	protected $_template;
 	
 
-	public function __construct() {
-		$this->_templatesDir = 'view/';
+	public function __construct($engine, $templatesDir) {
+		$this->_engine = $engine;
+		$this->_templatesDir = $templatesDir;
 	}
 
 	public function assign($name, $value) {
@@ -32,11 +34,12 @@ class View {
 	}
 
 	public function fetch($template) {
+		$path = $this->_templatesDir . DIRECTORY_SEPARATOR . $template;
 		if (!file_exists($path)) {
 			throw new Exception('invalid template file ' . $path);
 		}
 		
-		return $this->_engine->fetch();
+		return $this->_engine->fetch($path, $this->_tplVars);
 	}
 
 	public function display($template) {
