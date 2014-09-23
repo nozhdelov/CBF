@@ -63,7 +63,7 @@ class Autoloader {
 	}
 	
 	public static function addAliase($alias, $path){
-		self::$_aliases[$name] = $path;
+		self::$_aliases[$alias] = $path;
 	}
 
 }
