@@ -33,7 +33,7 @@ class Application extends Container{
 	
 	
 	public function getConfig($name){
-		return $this->_configs[$name];
+		return isset($this->_configs[$name]) ? $this->_configs[$name] : false;
 	}
 	
 	

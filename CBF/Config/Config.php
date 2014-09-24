@@ -13,11 +13,11 @@ class Config{
 	}
 	
 	public function get($name){
-		return isset($this->_values[$name]) ? $this->_values[$name] : null;
+		return isset($this->_values->$name) ? $this->_values->$name : null;
 	}
 	
 	public function set($name, $value){
-		$this->_values[$name] = $value;
+		$this->_values->$name = $value;
 	}
 	
 	
@@ -33,7 +33,26 @@ class Config{
 		$this->_values = (object)array_merge((array)$this->_values, (array)$values);
 	}
 	
+	protected function _parseKey($key, $value) {
+		$parts = explode('.', $key);
+		$cnt = count($parts);
+		while ($cnt >= 0) {
+			$value = array($parts[$cnt] => $value);
+			$cnt--;
+		}
+		return $value;
+	}
 	
+	
+	protected function _parseValue($key){
+		$parts = explode('.', $key);
+		
+		$value = $this->_values[$parts[0]];
+		foreach($parts as $part){
+			$value = $value[$part];
+		}
+		return $value;
+	}
 	
 	
 }

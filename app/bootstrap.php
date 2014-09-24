@@ -23,7 +23,7 @@ $app->detectEnv(array(
 ));
 
 $app->loadConfig('path');
-$app->loadConfig('database');
+$app->loadConfig('app');
 
 
 
