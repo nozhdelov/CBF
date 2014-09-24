@@ -2,11 +2,12 @@
 
 class Config{
 	
-	protected $_values = array();
+	protected $_values ;
 	
 	public function __construct($values = false) {
-		if(is_array($values)){
-			$this->_values = $values;
+		$this->_values = new \stdClass();
+		if($values !== false){
+			$this->addValues($values);
 		}
 		
 	}
@@ -29,7 +30,10 @@ class Config{
 	}
 	
 	public function addValues($values){
-		$this->_values = array_merge($this->_values, $values);
+		$this->_values = (object)array_merge((array)$this->_values, (array)$values);
 	}
+	
+	
+	
 	
 }
