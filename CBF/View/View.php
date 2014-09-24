@@ -38,6 +38,11 @@ class View {
 	public function __isset($name) {
 		return isset($this->_tplVars[$name]);
 	}
+	
+	
+	public function __toString() {
+		return $this->fetch();
+	}
 
 	public function fetch() {
 		$path = $this->_templatesDir . DIRECTORY_SEPARATOR . $this->_template;
