@@ -9,7 +9,7 @@ require_once __DIR__.'/../CBF/Autoloading/Autoloader.php';
 
 
 Autoloader::addPath('.');
-//Autoloader::addPath('./CBF/');
+Autoloader::addPath('app/Controller');
 Autoloader::register();
 
 

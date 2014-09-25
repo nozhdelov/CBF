@@ -54,7 +54,9 @@ class Application extends Container{
 	public function run($route){
 		try { 
 			$result = $route->run();
-			print $result;
+			if(is_object($result) || is_string($result)){
+				print $result;
+			}		
 		} catch(Exception $e) {
 			print $e;
 		}

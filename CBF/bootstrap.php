@@ -3,7 +3,8 @@
 CBF\Autoloading\Autoloader::addAliases(array(
     'App' => 'CBF\Facade\Application',
     'Router' => 'CBF\Facade\Router',
-    'View' => 'CBF\Facade\View'
+    'View' => 'CBF\Facade\View',
+    'Controller' => 'CBF\Controller\Controller'
 ));
 
 

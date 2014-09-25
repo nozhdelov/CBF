@@ -92,9 +92,9 @@ class Route {
 		if($this->_target instanceof Closure){
 			return call_user_func_array($this->_target, $this->_params);
 		}
-		$controllerName = ucfirst($this->getController());
+		$controllerName = ucfirst($this->getController() . 'Controller');
 		$controller = new $controllerName;
-		return $controller->callAction($this->getAction($this->params));
+		return $controller->callAction($this->getAction() . 'Action', $this->_params);
 	}
 
 }

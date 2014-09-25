@@ -3,7 +3,6 @@
 namespace CBF\View;
 
 use CBF\View\Engine;
-use \stdClass;
 
 class Factory {
 
@@ -14,8 +13,8 @@ class Factory {
 	}
 
 	public function make($template = false, $data = array()) {
-		var_dump($this->_app->getConfig('app'));
-		$engine = $this->makeEngine($this->_app->getConfig('app')->view->engine);
+		$config = $this->_app->getConfig('app');
+		$engine = $this->makeEngine($config['view']['engine']);
 		$path = $this->_app->getConfig('path')->view;
 		return new View($engine, $this, $path, $template, $data);
 	}
