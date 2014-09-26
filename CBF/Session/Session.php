@@ -29,4 +29,9 @@ class Session {
 	}
 	
 	
+	public function initSession(){
+		$this->_storage->init();
+	}
+	
+	
 }

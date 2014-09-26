@@ -8,7 +8,7 @@ class Factory {
 
 	protected $_app;
 
-	public function __construct(\CBF\Application\Application $application) {
+	public function __construct(CBF\Application\Application $application) {
 		$this->_app = $application;
 	}
 

@@ -4,14 +4,22 @@ CBF\Autoloading\Autoloader::addAliases(array(
     'App' => 'CBF\Facade\Application',
     'Router' => 'CBF\Facade\Router',
     'View' => 'CBF\Facade\View',
-    'Controller' => 'CBF\Controller\Controller'
+    'Session' => 'CBF\Facade\Session',
+    'SessionFactory' => 'CBF\Session\Factory',
+    'Controller' => 'CBF\Controller\Controller',
+    
 ));
 
 
-$app->instance($app, 'CBF\Application\Application', 'App');
+
+
+
+$app->bindInstance($app, 'CBF\Application\Application', 'App');
+$app->bindInstance( , 'CBF\Session\Session', 'Session');
 
 $app->bindShared('CBF\Routing\Router', 'Router');
-$app->bind('CBF\View\Factory', 'View')->addArgument($app->getConfig('path'));
+$app->bindShared('CBF\Session\Session', 'Session');
+$app->bind('CBF\View\Factory', 'View');
 
 
-$v = View::make('kur');
+

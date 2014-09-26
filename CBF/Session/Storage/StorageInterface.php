@@ -7,5 +7,6 @@ interface StorageInterface{
 	public function get($name);
 	public function has($name);
 	public function remove($name);
+	public function init();
 	
 }

@@ -16,7 +16,7 @@ class Container {
 	}
 	
 	
-	public function instance($instance, $type, $name = false){
+	public function bindInstance($instance, $type, $name = false){
 		$this->bindShared($type, $name);
 		$this->_instances[$type] = $instance;
 	}
