@@ -11,11 +11,11 @@ CBF\Autoloading\Autoloader::addAliases(array(
 ));
 
 
-
+$session = SessionFactory::make();
 
 
 $app->bindInstance($app, 'CBF\Application\Application', 'App');
-$app->bindInstance( , 'CBF\Session\Session', 'Session');
+$app->bindInstance($session , 'CBF\Session\Session', 'Session');
 
 $app->bindShared('CBF\Routing\Router', 'Router');
 $app->bindShared('CBF\Session\Session', 'Session');
