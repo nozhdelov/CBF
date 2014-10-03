@@ -23,7 +23,7 @@ class Autoloader {
 			
 			$filePath = $path . DIRECTORY_SEPARATOR . $fileName;
 			
-			if (@file_exists($filePath)) {
+			if (file_exists($filePath)) {
 				require_once $filePath;
 				return;
 			}

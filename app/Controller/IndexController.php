@@ -3,7 +3,7 @@
 class IndexController extends BaseController {
 	
 	public function indexAction(){
-		return 'sdfsdfsdf';
+		return 'Index controller --- index action';
 	}
 	
 }

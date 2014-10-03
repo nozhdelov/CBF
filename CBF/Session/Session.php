@@ -7,8 +7,8 @@ class Session {
 	protected $_storage;
 	
 	
-	public function __construct(CBF\Session\Storage $storage) {
-		$this->_storage = $storage;;
+	public function __construct(\CBF\Session\Storage\StorageInterface $storage) {
+		$this->_storage = $storage;
 	}
 	
 	
@@ -29,7 +29,7 @@ class Session {
 	}
 	
 	
-	public function initSession(){
+	public function init(){
 		$this->_storage->init();
 	}
 	

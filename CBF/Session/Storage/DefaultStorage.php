@@ -3,7 +3,7 @@
 
 class DefaultStorage implements StorageInterface{
 	
-	public function __construct(CBF\Config\Config $config){}
+	public function __construct(\CBF\Config\Config $config){}
 	
 	public function get($name) {
 		return isset($_SESSION[$name]) ? $_SESSION[$name] : null;
