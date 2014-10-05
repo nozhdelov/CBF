@@ -25,6 +25,10 @@ class DataObject implements \IteratorAggregate, \Countable, \ArrayAccess {
 		return $this->_values;
 	}
 	
+	public function has($name){
+		return isset($this->_values[$name]);
+	}
+	
 	
 	public function __get($name) {
 		return $this->get($name);
