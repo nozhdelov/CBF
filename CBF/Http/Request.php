@@ -63,28 +63,28 @@ class Reuest{
 
 	
 	
-	public function get($name = false){
-		return ($name !== false) ? $this->_get->get($name) : $this->_get->all();
+	public function get($name = false, $filter = false){
+		return ($name !== false) ? $this->_get->get($name, $filter) : $this->_get;
 	}
 	
 	
-	public function post($name = false){
-		return ($name !== false) ? $this->_post->get($name) : $this->_post->all();
+	public function post($name = false, $filter = false){
+		return ($name !== false) ? $this->_post->get($name, $filter) : $this->_post;
 	} 
 	
 	
-	public function file($name = false){
-		return ($name !== false) ? $this->_file->get($name) : $this->_file->all();
+	public function file($name = false, $filter = false){
+		return ($name !== false) ? $this->_file->get($name, $filter) : $this->_file;
 	}
 
 
-	public function cookie($name = false){
-		return ($name !== false) ? $this->_cookie->get($name) : $this->_cookie->all();
+	public function cookie($name = false, $filter = false){
+		return ($name !== false) ? $this->_cookie->get($name, $filter) : $this->_cookie;
 	}
 	
 	
-	public function headers($name = false){
-		return ($name !== false) ? $this->_headers->get($name) : $this->_headers->all();
+	public function headers($name = false, $filter = false){
+		return ($name !== false) ? $this->_headers->get($name, $filter) : $this->_headers;
 	}
 
 	protected function _parseHeaders(){

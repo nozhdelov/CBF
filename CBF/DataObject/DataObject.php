@@ -9,7 +9,15 @@ class DataObject implements \IteratorAggregate, \Countable, \ArrayAccess {
 	}
 	
 	
-	public function get($name){
+	public function get($name, $filter = false){
+		if($filter !== false ){
+			$method = 'get'.ucfirst(strtolower($filter));
+			if(method_exists($this, $method)){
+				return $this->$method($name);
+			} else {
+				throw new \InvalidArgumentException('invalid filter for DataObject');
+			}	
+		}
 		return isset($this->_values[$name]) ? $this->_values[$name] : null;
 	}
 	
@@ -30,6 +38,29 @@ class DataObject implements \IteratorAggregate, \Countable, \ArrayAccess {
 	}
 	
 	
+	
+	public function getInt($name){
+		return (int)$this->get($name);
+	}
+	
+	public function getFloat($name){
+		return (float)$this->get($name);
+	}
+	
+	public function getDouble($name){
+		return (double)$this->get($name);
+	}
+	
+	public function getBool($name){
+		return (bool)$this->get($name);
+	}
+	
+	public function getString($name){
+		return (string)$this->get($name);
+	}
+	
+	
+	
 	public function __get($name) {
 		return $this->get($name);
 	}
@@ -39,7 +70,7 @@ class DataObject implements \IteratorAggregate, \Countable, \ArrayAccess {
 	}
 	
 	public function __isset($name) {
-		return isset($this->_values[$name]);
+		return $this->has($name);
 	}
 	
 	public function __unset($name) {
@@ -58,7 +89,7 @@ class DataObject implements \IteratorAggregate, \Countable, \ArrayAccess {
 	
 	
 	public function offsetExists($offset) {
-		return isset($this->_values[$offset]);
+		return $this->has($offset);
 	}
 	
 	public function offsetGet($offset) {
