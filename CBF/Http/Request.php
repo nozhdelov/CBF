@@ -2,7 +2,7 @@
 
 use CBF\DataObject\DataObject;
 
-class Reuest{
+class Request{
 	
 	
 	const METHOD_HEAD = 'HEAD';
