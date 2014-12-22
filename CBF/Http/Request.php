@@ -96,7 +96,7 @@ class Reuest{
 				for($i = 1; $i < count($nameParts); $i++){
 					$headerParts[] = ucfirst(strtolower($nameParts[$i]));
 				}
-				$this->_headers->set(implode('_', $headerParts), $value);
+				$this->_headers->set(implode('-', $headerParts), $value);
 			}
 		}
 	}
