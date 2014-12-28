@@ -1,6 +1,4 @@
-<?php
-
-namespace CBF\View;
+<?php namespace CBF\View;
 
 use CBF\View\Engine;
 

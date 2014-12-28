@@ -51,6 +51,14 @@ class Route {
 		$this->_target = $target;
 	}
 	
+	public function getModule(){
+		return $this->_module;
+	}
+	
+	public function setModule($module){
+		$this->_module = $module;
+	}
+	
 	public function getController(){
 		return $this->_controller;
 	}

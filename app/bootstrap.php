@@ -10,10 +10,10 @@ use \CBF\Autoloading\Autoloader;
 require_once __DIR__.'/../CBF/Autoloading/Autoloader.php';
 
 
-
-Autoloader::addPath('.');
-Autoloader::addPath('app/Controller');
 Autoloader::register();
+Autoloader::addPath('.');
+
+
 
 
 $app = new \CBF\Application\Application;
@@ -35,3 +35,11 @@ require_once $app->getConfig('path')->framework . 'bootstrap.php';
 
 
 require_once $app->getConfig('path')->app . 'routes.php';
+
+
+$route = Router::matchRequest();
+
+Autoloader::addPath($app->getConfig('path')->app . 'modules/' . $route->getModule() . '/Controller');
+Autoloader::addPath($app->getConfig('path')->app . 'modules/' . $route->getModule() . '/Model');
+
+$app->run($route);
