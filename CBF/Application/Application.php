@@ -62,6 +62,10 @@ class Application extends Container{
 	}
 
 
+	public function getRequest(){
+		
+	}
+	
 	
 	public function run(){
 		
@@ -76,9 +80,7 @@ class Application extends Container{
 	}
 	
 	
-	public function getInstace(){
-		return parent::make('Application');
-	}
+	
 	
 	
 }
