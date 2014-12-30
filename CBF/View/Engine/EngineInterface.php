@@ -3,4 +3,5 @@
 interface EngineInterface{
 	
 	public function fetch($path, $data = array());
+	public function getFileExtension();
 }

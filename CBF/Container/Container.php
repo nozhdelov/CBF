@@ -43,14 +43,14 @@ class Container {
 
 	
 	public function make($name, $params = array()) {
-		$type = isset($this->_aliases[$name]) ? $this->_aliases[$name] : $name;
+		$type = array_key_exists($name, $this->_aliases) ? $this->_aliases[$name] : $name;
 		
 		if(!isset($this->_bindings[$type])){
 			throw new ContainerException('Missing binding for ' . $name);
 		}
 		
 		$binding = $this->_bindings[$type];
-		
+	
 		if (isset($this->_instances[$type])) {
 			return $this->_instances[$type];
 		}

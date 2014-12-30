@@ -10,6 +10,7 @@ class Application extends Container{
 	protected $_configs;
 	protected $_configsPath = '';
 	protected $_env = 'global';
+	protected $_route = null;
 	
 	
 	public function setEnv($env){
@@ -51,15 +52,32 @@ class Application extends Container{
 	}
 	
 	
-	public function run($route){
+	public function setRoute(\CBF\Routing\Route $route){
+		$this->_route = $route;
+	}
+	
+	
+	public function getRoute(){
+		return $this->_route;
+	}
+
+
+	
+	public function run(){
+		
 		try { 
-			$result = $route->run();
+			$result = $this->_route->run();
 			if(is_object($result) || is_string($result)){
 				print $result;
 			}		
 		} catch(Exception $e) {
 			print $e;
 		}
+	}
+	
+	
+	public function getInstace(){
+		return parent::make('Application');
 	}
 	
 	

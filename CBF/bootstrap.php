@@ -2,6 +2,7 @@
 
 CBF\Autoloading\Autoloader::addAliases(array(
     'App' => 'CBF\Facade\Application',
+    'Application' => 'CBF\Facade\Application',
     'Router' => 'CBF\Facade\Router',
     'View' => 'CBF\Facade\View',
     'Session' => 'CBF\Facade\Session',
@@ -14,7 +15,7 @@ CBF\Autoloading\Autoloader::addAliases(array(
 
 
 
-$app->bindInstance($app, 'CBF\Application\Application', 'App');
+$app->bindInstance($app, 'CBF\Application\Application', 'Application');
 
 $app->bindShared('CBF\Routing\Router', 'Router');
 $app->bindShared('CBF\Session\Session', 'Session');

@@ -3,7 +3,7 @@
 return array(
     'app' => __DIR__  . '/../',
     'public' => __DIR__ . '/../../public/',
-    'view' => __DIR__  . '/../View/',
+    'modules' => __DIR__  . '/../modules/',
     'framework' => __DIR__ . '/../../CBF/'
     
 );

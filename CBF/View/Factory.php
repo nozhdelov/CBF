@@ -6,14 +6,14 @@ class Factory {
 
 	protected $_app;
 
-	public function __construct(CBF\Application\Application $application) {
+	public function __construct(\CBF\Application\Application $application) {
 		$this->_app = $application;
 	}
 
 	public function make($template = false, $data = array()) {
 		$config = $this->_app->getConfig('app');
 		$engine = $this->makeEngine($config['view']['engine']);
-		$path = $this->_app->getConfig('path')->view;
+		$path = $this->_app->getConfig('path')->modules . $this->_app->getRoute()->getModule() . '/View/';
 		return new View($engine, $this, $path, $template, $data);
 	}
 

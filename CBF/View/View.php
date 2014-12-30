@@ -10,6 +10,7 @@ class View {
 	protected $_template = false;
 	protected $_factory;
 	protected $_isNestable = true;
+	protected $_name = '';
 
 	public function __construct(EngineInterface $engine, Factory $factory, $templatesDir, $template = false, $tplVars = array()) {
 		$this->_engine = $engine;
@@ -17,6 +18,10 @@ class View {
 		$this->_templatesDir = $templatesDir;
 		$this->_template = $template;
 		$this->_tplVars = $tplVars;
+		if($template !== false){
+			$this->_name = str_replace('-', '_', $template);
+		}
+		
 	}
 
 	public function assign($name, $value) {
@@ -45,11 +50,12 @@ class View {
 	}
 
 	public function fetch() {
-		$path = $this->_templatesDir . DIRECTORY_SEPARATOR . $this->_template;
+		$path = $this->_templatesDir . DIRECTORY_SEPARATOR . $this->_template . $this->_engine->getFileExtension();
 		$this->_prepareVars();
 		
 		if (!file_exists($path)) {
-			throw new Exception('invalid template file ' . $path);
+			echo 'kurets';
+			//throw new Exception('invalid template file ' . $path);
 		}
 		
 		return $this->_engine->fetch($path, $this->_tplVars);
@@ -71,7 +77,7 @@ class View {
 	
 	
 	
-	public function nest($name, $view, $data){
+	public function nest($name, $view, $data = array()){
 		if($view instanceof View){
 			$this->assign($name, $view);
 		} else {
@@ -87,6 +93,18 @@ class View {
 	
 	public function setIsNestable($isNestable){
 		$this->_isNestable = $isNestable;
+		return $this;
+	}
+	
+	
+	public function getName(){
+		return $this->_name;
+	}
+	
+	
+	public function setName($name){
+		$this->_name = $name;
+		return $this;
 	}
 
 

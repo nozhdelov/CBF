@@ -39,7 +39,8 @@ require_once $app->getConfig('path')->app . 'routes.php';
 
 $route = Router::matchRequest();
 
-Autoloader::addPath($app->getConfig('path')->app . 'modules/' . $route->getModule() . '/Controller');
-Autoloader::addPath($app->getConfig('path')->app . 'modules/' . $route->getModule() . '/Model');
+Autoloader::addPath($app->getConfig('path')->modules . $route->getModule() . '/Controller');
+Autoloader::addPath($app->getConfig('path')->modules . $route->getModule() . '/Model');
 
-$app->run($route);
+$app->setRoute($route);
+$app->run();
