@@ -47,8 +47,7 @@ class Adaptor{
 	}
 	
 	
-	public function all($table, $mide = false){
-		$mode = $mode === false ? $this->_PDOFetchModes[$this->_defaultFetchMode] : $this->_PDOFetchModes[$mode];
+	public function all($table, $mode = false){
 		$query = "SELECT * FROM `" . $table . "`";
 		return $this->fetchByQuery($query, $mode);
 	}
@@ -56,7 +55,6 @@ class Adaptor{
 	
 	public  function find($id, $table, $mode = false){
 		$query = "SELECT * FROM `" . $table . "` WHERE `id` = " . intval($id);
-		$mode = $mode === false ? $this->_PDOFetchModes[$this->_defaultFetchMode] : $this->_PDOFetchModes[$mode];
 		return $this->fetchRowByQuery($query, $mode);
 	}
 	
