@@ -22,7 +22,7 @@ class Autoloader {
 		foreach (self::$_paths as $path) {
 			
 			$filePath = $path . DIRECTORY_SEPARATOR . $fileName;
-			//echo $filePath . PHP_EOL;
+			echo $filePath . PHP_EOL;
 			if (file_exists($filePath)) {
 				require_once $filePath;
 				return;

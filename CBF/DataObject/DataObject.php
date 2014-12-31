@@ -5,7 +5,7 @@ class DataObject implements \IteratorAggregate, \Countable, \ArrayAccess {
 	protected $_values;
 
 	public function __construct(array $data = array()) {
-		$this->values = $data;
+		$this->_values = $data;
 	}
 	
 	

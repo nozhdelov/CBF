@@ -19,7 +19,7 @@ class Request{
 	protected $_headers;
 	
 	
-	public function __construct($get = array(), $post = array(), $cookie = array(), $file = array(), $server = array()) {
+	public function __construct(&$get = array(), &$post = array(), &$cookie = array(), &$file = array(), &$server = array()) {
 		
 		$this->_get = new DataObject($get);
 		$this->_post = new DataObject($post);

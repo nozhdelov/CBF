@@ -6,34 +6,28 @@ ini_set('display_errors', 1);
 use \CBF\Autoloading\Autoloader;
 
 
+define('FRAMEWORK_PATH', __DIR__ . '/../');
 
-require_once __DIR__.'/../CBF/Autoloading/Autoloader.php';
-
-
+require_once FRAMEWORK_PATH . 'CBF/Autoloading/Autoloader.php';
 Autoloader::register();
-Autoloader::addPath('.');
-
-
-
+Autoloader::addPath(FRAMEWORK_PATH);
 
 $app = new \CBF\Application\Application;
 
-\CBF\Facade\Facade::setContainer($app);
-
-$app->setConfigsPath(__DIR__ . '/configs/');
 $app->detectEnv(array(
-    
+    'cbf.com' => 'production'
 ));
 
+$app->setConfigsPath(__DIR__ . '/configs/');
 $app->loadConfig('path');
 $app->loadConfig('app');
 
 
 
 
-require_once $app->getConfig('path')->framework . 'bootstrap.php';
+\CBF\Facade\Facade::setContainer($app);
 
-
+require_once $app->getConfig('path')->framework . 'CBF\bootstrap.php';
 require_once $app->getConfig('path')->app . 'routes.php';
 
 

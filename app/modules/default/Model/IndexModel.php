@@ -1,7 +1,7 @@
 <?php
 
-class IndexModel extends Model{
+class IndexModel extends CBF\Model\Model{
 	
-	
+	protected static $_table = 'users';
 	
 }

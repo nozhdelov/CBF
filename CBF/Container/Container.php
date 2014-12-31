@@ -38,7 +38,7 @@ class Container {
 	
 	
 	public function bindShared($type, $name = false){
-		$this->bind($type, $name, true);
+		return $this->bind($type, $name, true);
 	}
 
 	
@@ -100,7 +100,6 @@ class Container {
 		$dependencies = array();
 		foreach ($params as $parameter) {
 			
-			
 			$dependency = $parameter->getClass();
 
 			if (is_null($dependency)) {
@@ -113,10 +112,12 @@ class Container {
 	}
 
 	protected function _resolveValueParam(\ReflectionParameter $parameter, Binding $binding) {
-		if ($parameter->isDefaultValueAvailable()) {
+		$arguments = $binding->getArguments();
+		if(isset($arguments[$parameter->getPosition()])){
+			return $arguments[$parameter->getPosition()];
+		} else if ($parameter->isDefaultValueAvailable()) {
 			return $parameter->getDefaultValue();
 		} else {
-
 			$message = "Unresolvable dependency resolving [$parameter] in class {$parameter->getDeclaringClass()->getName()}";
 			throw new BindingResolutionException($message);
 		}

@@ -9,7 +9,8 @@ CBF\Autoloading\Autoloader::addAliases(array(
     'SessionFactory' => 'CBF\Facade\SessionFactory',
     'Controller' => 'CBF\Controller\Controller',
     'DatabaseFactory' => 'CBF\Facade\DatabaseFactory',
-    'Model' => 'CBF\Model\Model'
+    'Model' => 'CBF\Model\Model',
+    'Request' => 'CBF\Facade\Request',
 ));
 
 
@@ -23,8 +24,7 @@ $app->bindShared('CBF\Session\Factory', 'SessionFactory');
 $app->bindShared('CBF\Database\Factory', 'DatabaseFactory');
 $app->bind('CBF\View\Factory', 'View');
 $app->bindInstance(SessionFactory::make(), 'CBF\Session\Session', 'Session');
-
-
+$app->bindShared('CBF\Http\Request', 'Request')->setArguments(array(&$_GET, &$_POST, &$_COOKIE, &$_FILES, &$_SERVER));
 
 Session::init();
 

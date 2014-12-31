@@ -9,7 +9,7 @@ class Application extends Container{
 
 	protected $_configs;
 	protected $_configsPath = '';
-	protected $_env = 'global';
+	protected $_env = 'production';
 	protected $_route = null;
 	
 	
@@ -24,11 +24,12 @@ class Application extends Container{
 	public function loadConfig($name){
 		$filePath = $this->_configsPath . $name . '.php';
 		$this->_configs[$name] = new Config();
-		$this->_configs[$name]->addValues(include $filePath);
 		
 		$filePath = $this->_configsPath . $this->_env . '/' . $name . '.php';
-		if($this->_env && $this->_env !== 'global' && @file_exists($filePath)){
+		if(@file_exists($filePath)){
 			$this->_configs[$name]->addValues(include $filePath);
+		} else {
+			throw new \Exception('can not load config file  ' . $filePath);
 		}
 	}
 	
@@ -45,7 +46,14 @@ class Application extends Container{
 
 	
 	public function detectEnv($envs){
-		$hostName = gethostname();
+		
+		if(isset($_SERVER['HTTP_HOST']) && !empty($_SERVER['HTTP_HOST'])){
+			$hostName = $_SERVER['HTTP_HOST'];
+		} else if(isset($_SERVER['SERVER_NAME']) && !empty($_SERVER['SERVER_NAME'])){
+			$hostName = $_SERVER['SERVER_NAME'];
+		} else {
+			$hostName = gethostname();
+		}
 		if(array_key_exists($hostName, $envs)){
 			$this->_env = $envs[$hostName];
 		}

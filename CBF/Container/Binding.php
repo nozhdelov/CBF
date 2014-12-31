@@ -19,8 +19,17 @@ class Binding{
 	}
 	
 	
-	public function addArgument($argument){
-		$this->_arguments[] = $argument;
+	public function addArgument($value){
+		$this->_arguments[] = $value;
+	}
+	
+	public function setArguments(array $arguments){
+		$this->_arguments = $arguments;
+	}
+	
+	
+	public function getArguments(){
+		return $this->_arguments;
 	}
 	
 	
