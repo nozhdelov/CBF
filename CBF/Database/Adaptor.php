@@ -73,7 +73,9 @@ class Adaptor{
 		}
 		$query = rtrim($query, ",");
 		$query .= " ) ";
-		return $this->query($query);
+		
+		$this->query($query);
+		return $this->lastInsertId();
 	}
 	
 	
@@ -101,5 +103,10 @@ class Adaptor{
 			$query .= " WHERE " . $expr ;
 		}
 		return $this->query($query);
+	}
+	
+	
+	public function lastInsertId(){
+		return $this->_PDO->lastInsertId();
 	}
 }
