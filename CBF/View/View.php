@@ -74,11 +74,11 @@ class View {
 	
 	
 	
-	public function nest($view, $data = array(), $name = ''){
+	public function nest($view){
 		if($view instanceof View){
 			$this->assign($view->getName(), $view);
 		} else {
-			$this->assign($name, $this->factory->make($view, $data));
+			throw new \InvalidArgumentException('only view can be nested');
 		}
 		
 	}

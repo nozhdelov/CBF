@@ -14,7 +14,7 @@ class Controller {
 		if($result instanceof View && $result->getIsNestable()){
 			$this->_setupLayout();
 			if($this->_layout instanceof View){
-				$this->_layout->nest($result->getName(), $result);
+				$this->_layout->nest($result);
 				$result = $this->_layout;
 			}
 		}
