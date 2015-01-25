@@ -63,6 +63,11 @@ class Model{
 	}
 	
 	
+	public static function insert($data, $table){
+		static::$_adaptor->insert($data, $table);
+	}
+	
+	
 	public static function delete($expr){
 		static::$_adaptor->delete($expr);
 	}
