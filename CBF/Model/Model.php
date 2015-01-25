@@ -62,6 +62,11 @@ class Model{
 	}
 	
 	
+	public static function escape($value){
+		return static::$_adaptor->escape($value);
+	} 
+	
+	
 	protected static function _filterValue($type, $value){
 		switch ($type){
 			case self::FILED_TYPE_DB_EXPR : 
