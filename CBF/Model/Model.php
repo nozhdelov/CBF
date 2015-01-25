@@ -42,6 +42,12 @@ class Model{
 	public static function fetchByQuery($query, $mode = false){
 		return static::$_adaptor->fetchByQuery($query, $mode);
 	}
+	
+	
+	
+	public static function fetchRowByQuery($query, $mode = false){
+		return static::$_adaptor->fetchByQuery($query, $mode);
+	}
 
 
 	
