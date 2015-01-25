@@ -10,7 +10,7 @@ class View {
 	protected $_template = false;
 	protected $_factory;
 	protected $_isNestable = true;
-	protected $_name = '';
+	protected $_name = 'content';
 
 	public function __construct(EngineInterface $engine, Factory $factory, $templatesDir, $template = false, $tplVars = array()) {
 		$this->_engine = $engine;
@@ -18,9 +18,6 @@ class View {
 		$this->_templatesDir = $templatesDir;
 		$this->_template = $template;
 		$this->_tplVars = $tplVars;
-		if($template !== false){
-			$this->_name = str_replace('-', '_', $template);
-		}
 		
 	}
 
@@ -77,9 +74,9 @@ class View {
 	
 	
 	
-	public function nest($name, $view, $data = array()){
+	public function nest($view, $data = array(), $name = ''){
 		if($view instanceof View){
-			$this->assign($name, $view);
+			$this->assign($view->getName(), $view);
 		} else {
 			$this->assign($name, $this->factory->make($view, $data));
 		}
