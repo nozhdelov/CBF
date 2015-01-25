@@ -7,7 +7,6 @@ class Lang {
 	protected $_lang = 'en';
 	
 	public function __construct( $translator, $lang){
-		var_dump($translator);
 		$this->_translator = $translator;
 		$this->_lang = $lang;
 	}
