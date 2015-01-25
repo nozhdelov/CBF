@@ -35,6 +35,7 @@ $route = Router::matchRequest();
 
 Autoloader::addPath($app->getConfig('path')->modules . $route->getModule() . '/Controller');
 Autoloader::addPath($app->getConfig('path')->modules . $route->getModule() . '/Model');
+Autoloader::addPath($app->getConfig('path')->modules . $route->getModule() . '/Helper');
 
 $app->setRoute($route);
 $app->run();

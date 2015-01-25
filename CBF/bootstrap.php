@@ -11,6 +11,8 @@ CBF\Autoloading\Autoloader::addAliases(array(
     'DatabaseFactory' => 'CBF\Facade\DatabaseFactory',
     'Model' => 'CBF\Model\Model',
     'Request' => 'CBF\Facade\Request',
+    'Lang' => 'CBF\Facade\Lang',
+    'LangFactory' => 'CBF\Facade\LangFactory'
 ));
 
 
@@ -22,8 +24,10 @@ $app->bindShared('CBF\Routing\Router', 'Router');
 $app->bindShared('CBF\Session\Session', 'Session');
 $app->bindShared('CBF\Session\Factory', 'SessionFactory');
 $app->bindShared('CBF\Database\Factory', 'DatabaseFactory');
+$app->bindShared('CBF\Lang\Factory', 'LangFactory');
 $app->bind('CBF\View\Factory', 'View');
 $app->bindInstance(SessionFactory::make(), 'CBF\Session\Session', 'Session');
+$app->bindInstance(LangFactory::make(), 'CBF\Lang\Lang', 'Lang');
 $app->bindShared('CBF\Http\Request', 'Request')->setArguments(array(&$_GET, &$_POST, &$_COOKIE, &$_FILES, &$_SERVER));
 
 Session::init();
