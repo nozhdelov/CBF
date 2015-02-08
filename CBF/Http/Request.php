@@ -26,6 +26,7 @@ class Request{
 		$this->_cookie = new DataObject($cookie);
 		$this->_file = new DataObject($file);
 		$this->_server = new DataObject($server);
+		$this->_request = new DataObject(array_merge($get, $post));
 		$this->_headers = new DataObject();
 		
 		$this->_parseHeaders();
