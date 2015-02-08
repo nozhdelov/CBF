@@ -17,6 +17,7 @@ class Request{
 	protected $_file;
 	protected $_server;
 	protected $_headers;
+	protected $_request;
 	
 	
 	public function __construct(&$get = array(), &$post = array(), &$cookie = array(), &$file = array(), &$server = array()) {
@@ -86,6 +87,10 @@ class Request{
 	
 	public function headers($name = false, $filter = false){
 		return ($name !== false) ? $this->_headers->get($name, $filter) : $this->_headers;
+	}
+	
+	public function request($name = false, $filter = false){
+		return ($name !== false) ? $this->_request->get($name, $filter) : $this->_request;
 	}
 
 	protected function _parseHeaders(){
