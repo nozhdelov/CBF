@@ -7,7 +7,7 @@ class URL {
 	public function toAction($path, $params = array()){
 		
 		$host = isset($_SERVER['HTTP_HOST']) && !empty($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : $_SERVER['SERVER_NAME'];
-		return 'http://' . $host . '/' . $path . '&' . $this->buildQueryString($params);
+		return 'http://' . $host . '/' . $path . '?' . $this->buildQueryString($params);
 	}
 	
 	
