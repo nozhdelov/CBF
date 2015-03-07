@@ -39,6 +39,11 @@ class Model{
 	}
 	
 	
+	public static function find($id){
+		return static::$_adaptor->find($id, static::$_table);
+	}
+	
+	
 	public static function fetchByQuery($query, $mode = false){
 		return static::$_adaptor->fetchByQuery($query, $mode);
 	}
