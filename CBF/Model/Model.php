@@ -57,7 +57,7 @@ class Model{
 
 	
 	public static function save($data){
-		$data = static::filter();
+		$data = static::filter($data);
 		return static::$_adaptor->insert($data, static::$_table);
 	}
 	
