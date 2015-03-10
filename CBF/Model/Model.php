@@ -83,6 +83,18 @@ class Model{
 	} 
 	
 	
+	public static function resultByKey($key, $result){
+		if(!is_array($result)){
+			return $result;
+		}
+		$return = array();
+		foreach($result as $row){
+			$return[$row[$key]] = $row;
+		}
+		return $return;
+	}
+	
+	
 	protected static function _filterValue($type, $value){
 		switch ($type){
 			case self::FILED_TYPE_DB_EXPR : 
