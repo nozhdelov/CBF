@@ -89,7 +89,8 @@ class Model{
 		}
 		$return = array();
 		foreach($result as $row){
-			$return[$row[$key]] = $row;
+			$key = is_array($row) ? $row[$key] : $row->{$key};
+			$return[$key] = $row;
 		}
 		return $return;
 	}
