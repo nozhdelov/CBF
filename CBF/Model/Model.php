@@ -79,7 +79,7 @@ class Model{
 	
 	
 	public static function delete($expr){
-		static::$_adaptor->delete($expr);
+		static::$_adaptor->delete($expr, static::$_table);
 	}
 	
 	
