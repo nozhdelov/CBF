@@ -69,7 +69,7 @@ class Model{
 	
 	public static function update($expr, $data){
 		$data = static::filter($data);
-		static::$_adaptor->update($expr, static::$_fieldsValues);
+		static::$_adaptor->update($expr, $data, static::$_table);
 	}
 	
 	
